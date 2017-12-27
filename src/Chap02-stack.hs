@@ -1,6 +1,7 @@
 module Chap02Stack where
 
-import Test.QuickCheck (quickCheck)
+import Test.QuickCheck
+import Test.QuickCheck.Arbitrary
 
 -- Stack interface
 
@@ -10,28 +11,34 @@ class Stack st where
   peek :: st a -> a
   pop :: st a -> (a, st a)
   push :: a -> st a -> st a
-  length :: st a -> Int
+  len :: st a -> Int
 
 
 -- Stack implement with the built-in list
-newtype List a = L [a]
+newtype List a = L [a] deriving Show
+
+instance Arbitrary a => Arbitrary (List a) where
+  arbitrary = do
+    a <- arbitrary
+    return $ L a
 
 instance Stack List where
-  none = None
+  none = L []
 
-  isEmpty None = True
+  isEmpty (L []) = True
   isEmpty _ = False
 
-  peek None = error "No element"
-  peek (More a _) = a
+  peek (L []) = error "No element"
+  peek (L (a:as)) = a
 
-  pop None = error "No element"
-  pop (More a la) = (a, la)
+  pop (L []) = error "No element"
+  pop (L (a:as)) = (a, L as)
 
-  push x None = More x None
-  push x xs = More x xs
+  push x (L as) = L $ x:as
+  len (L as) = length as
 
+prop_add a ls = len ls + 1 == len (push a ls)
 
 stackTest :: IO ()
 stackTest = do
-  quickCheck (prop_empty :: [Bool] -> Bool)
+  quickCheck (prop_add :: Int -> List Int -> Bool)
