@@ -110,3 +110,9 @@ leftistHeapTest= do
   quickCheck (prop_rank :: LHeap String -> Bool)
   quickCheck (prop_order :: LHeap String -> Bool)
   quickCheck (prop_order_fromList:: [String]-> Bool)
+
+
+-- see some example of LHeap generated randomly
+test :: IO ()
+test = do
+  sample (arbitrary :: Gen (LHeap Int))
