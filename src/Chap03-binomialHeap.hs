@@ -91,6 +91,10 @@ instance Heap BHeap where
     let (bt, bts') = removeMinTree bts
     in merge (BHeap (reverse $ children bt)) (BHeap bts')
 
+-- Exercise 3.5 Define findMin directly rather than via a call to removeMinTree.
+-- TODO:
+
+
 -- see some example of LHeap generated randomly
 test :: IO ()
 test = do
@@ -128,3 +132,10 @@ binomialHeapTest :: IO ()
 binomialHeapTest = do
   quickCheck (prop_rank_order:: BHeap String -> Bool)
   quickCheck (prop_heap_order:: BHeap String -> Bool)
+
+
+
+-- Exercise 3.6 Most of the rank annotations in this representation of binomial heaps are redundant because we know that the children of a node of rank r have ranks r – 1,…, 0. Thus, we can remove the rank annotations from each node and instead pair each tree at the top-level with its rank
+
+
+-- Exercise 3.7 One clear advantage of leftist heaps over binomial heaps is that findMin takes only O(1) time, rather than O(log n) time. The following functor skeleton improves the running time of findMin to O(1) by storing the minimum element separately from the rest of the heap.
