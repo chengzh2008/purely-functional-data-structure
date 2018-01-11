@@ -63,6 +63,7 @@ instance (Arbitrary a, Ord a) => Arbitrary (RBTree a) where
                             return $ insert a rbt
                         )]
 
+-- properties 1: no red node has red child
 prop_color rbt = go rbt
   where go :: RBTree a -> Bool
         go E = True
@@ -73,6 +74,23 @@ prop_color rbt = go rbt
                 cr = color r
                 gorest = go l && go r
 
+type BC = Int
+leafBlack :: RBTree a -> [BC]
+leafBlack rbt = go 0 rbt
+  where go :: BC -> RBTree a -> [BC]
+        go bc E = [bc + 1]
+        go bc (T c l _ r)
+          | c == B = gorest $ bc + 1
+          | otherwise = gorest bc
+          where gorest n = go n l ++ go n r
+
+-- the path to every leaf has same number of black nodes
+prop_same_black rbt = null rest
+  where bcs = leafBlack rbt
+        h = head bcs
+        rest = filter (/=h) bcs
+
+
 -- see some example of LHeap generated randomly
 test :: IO ()
 test = do
@@ -82,3 +100,8 @@ test = do
 rbtreeTest :: IO ()
 rbtreeTest = do
   quickCheck (prop_color :: RBTree Int -> Bool)
+  quickCheck (prop_same_black :: RBTree String -> Bool)
+
+
+-- TODO: Exercise 3.9 Write a function fromOrdList of type Elem list → Tree that converts a sorted list with
+-- no duplicates into a red-black tree. Your function should run in O(n) time.
