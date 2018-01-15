@@ -105,3 +105,7 @@ rbtreeTest = do
 
 -- TODO: Exercise 3.9 Write a function fromOrdList of type Elem list → Tree that converts a sorted list with
 -- no duplicates into a red-black tree. Your function should run in O(n) time.
+
+-- simle solution but it runs in O(nlogn) time.
+rbtreeFromList :: Ord a => [a] -> RBTree a
+rbtreeFromList = foldr insert empty
