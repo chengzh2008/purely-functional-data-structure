@@ -3,7 +3,7 @@
 ### Learning notes.
 
 #### Chap 02 Persistence 
-* [stack] (https://github.com/chengzh2008/purely-functional-data-structure/blob/master/src/Chap02-stack.hs)
-* list
-* binary search tree
+* [stack](/src/Chap02-stack.hs)
+* [list](/src/Chap02-list.hs
+* [binary search tree](/src/Chap02-bst.hs)
 
