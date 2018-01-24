@@ -1,7 +1,7 @@
 
 # Purely Functional Data Structure (Chris Okasaki)
   
- ### Learning notes.
+ ### Learning notes and exercise solutions.
 
  #### Chap 02 Persistence 
  * [stack](/src/Chap02-stack.hs)
