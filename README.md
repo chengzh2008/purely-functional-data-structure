@@ -12,3 +12,7 @@
  * [leftist heap](/src/Chap03-leftistHeap.hs)
  * [binomial heap](/src/Chap03-binomialHeap.hs)
  * [red black tree](/src/Chap03-redblakTree.hs)
+
+ #### Chap 05 Fundamentals of Amortization 
+ * [batched queue](/src/Chap05-queue.hs)
+ 
