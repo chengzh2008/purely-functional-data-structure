@@ -14,5 +14,5 @@
  * [red black tree](/src/Chap03-redblakTree.hs)
 
  #### Chap 05 Fundamentals of Amortization 
- * [batched queue](/src/Chap05-queue.hs)
+ * [batched queue/deque](/src/Chap05-queue.hs)
  
