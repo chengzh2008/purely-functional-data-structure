@@ -15,4 +15,5 @@
 
  #### Chap 05 Fundamentals of Amortization 
  * [batched queue/deque](/src/Chap05-queue.hs)
+ * [splay heap](/src/Chap05-splayHeap.hs)
  
