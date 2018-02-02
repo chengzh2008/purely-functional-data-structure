@@ -21,6 +21,7 @@ bigger a (T l x r) =
   else T (bigger a l) x r
 
 -- get smaller partition of the tree
+-- exercise 5.4
 smaller :: Ord a => a -> Tree a -> Tree a
 smaller a E = E
 smaller a (T l x r) =
@@ -125,6 +126,9 @@ instance Heap Tree where
   deleteMin (T (T E y n) x r) = T n x r
   deleteMin (T (T m y n) x r) = T (deleteMin m) y (T n x r)
 
+-- TODO: exercise 5.5 prove the zig-zag case
+-- TODO: exercise 5.6 prove that deleteMin also runs in O(log n)
+
 --
 fromListToTree :: Ord a => [a] -> Tree a
 fromListToTree [] = E
@@ -132,6 +136,7 @@ fromListToTree (a:xs) = let small = filter (< a) xs
                             big = filter (> a) xs
                         in T (fromListToTree small) a (fromListToTree big)
 -- much faster than fromListToTree
+-- exercise 5.7
 fromListToTree' :: Ord a => [a] -> Tree a
 fromListToTree' [] = E
 fromListToTree' [x] = T E x E
@@ -140,10 +145,21 @@ fromListToTree' xs = merge (fromListToTree' first) (fromListToTree' second)
         first = take hl xs
         second = drop hl xs
 
+-- inorder traversal
+toList :: Tree a -> [a]
+toList t = go t
+  where go :: Tree a -> [a]
+        go E = []
+        go (T l a r) = go l ++ [a] ++ go r
+
+sortWithSplayTree :: Ord a => [a] -> [a]
+sortWithSplayTree = toList . fromListToTree
+
 
 test :: IO ()
 test = do
   sample (arbitrary :: Gen (Tree Int))
+  sample (arbitrary :: Gen [Int])
 
 instance (Arbitrary a, Ord a) => Arbitrary (Tree a) where
   arbitrary = do
