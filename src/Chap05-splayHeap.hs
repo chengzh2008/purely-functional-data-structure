@@ -1,5 +1,8 @@
 module SplayHeap where
 
+import Test.QuickCheck
+
+
 
 -- splay tree maintains no explicit balance information. Every operation blindly restructures the tree using some simple transformations that tend to increase balance. worst case operation can take as much as O(n), while every operation runs in O(logn) amortized time
 
@@ -122,4 +125,41 @@ instance Heap Tree where
   deleteMin (T (T E y n) x r) = T n x r
   deleteMin (T (T m y n) x r) = T (deleteMin m) y (T n x r)
 
--- TODO: write some properties test
+--
+fromListToTree :: Ord a => [a] -> Tree a
+fromListToTree [] = E
+fromListToTree (a:xs) = let small = filter (< a) xs
+                            big = filter (> a) xs
+                        in T (fromListToTree small) a (fromListToTree big)
+-- much faster than fromListToTree
+fromListToTree' :: Ord a => [a] -> Tree a
+fromListToTree' [] = E
+fromListToTree' [x] = T E x E
+fromListToTree' xs = merge (fromListToTree' first) (fromListToTree' second)
+  where hl = length xs `div` 2
+        first = take hl xs
+        second = drop hl xs
+
+
+test :: IO ()
+test = do
+  sample (arbitrary :: Gen (Tree Int))
+
+instance (Arbitrary a, Ord a) => Arbitrary (Tree a) where
+  arbitrary = do
+    as <- arbitrary
+    return $ fromListToTree as
+
+-- binary search tree properties
+prop_bst :: Ord a => Tree a -> Bool
+prop_bst t = go t
+   where go :: Ord a => Tree a -> Bool
+         go E = True
+         go (T E a E) = True
+         go (T t1@(T m b n) a E) = b <= a && go t1
+         go (T E a t2@(T l c r)) = a <= c && go t2
+         go (T t1@(T m b n) a t2@(T l c r)) = b <= a && a <= c && go t1 && go t2
+
+splayTreeTest :: IO ()
+splayTreeTest = do
+  quickCheck (prop_bst :: Tree Int -> Bool)
