@@ -1,5 +1,6 @@
 module ParingHeap where
 
+import Test.QuickCheck
 
 -- heap-ordered multiway trees
 data ParingHeap a = E | PH a [ParingHeap a] deriving Show
@@ -49,3 +50,29 @@ instance Heap ParingHeap where
   findMin = findMin'
   merge = merge'
   deleteMin = deleteMin'
+
+
+instance (Arbitrary a, Ord a) => Arbitrary (ParingHeap a) where
+  arbitrary = do
+    as <- arbitrary
+    return $ mergePairs $ fmap (\a -> PH a []) as
+
+test :: IO ()
+test = do
+  sample (arbitrary :: Gen (ParingHeap Int))
+
+-- paring heap properties
+prop_heap :: Ord a => ParingHeap a -> Bool
+prop_heap t = go t
+  where go E = True
+                      -- all items in the list are paring heap tree
+        go (PH a phs) = all go phs
+                      -- the root item is the smallest
+                      && all smallerThenA phs
+          where smallerThenA (PH b _) = a <= b
+
+
+paringHeapTest :: IO ()
+paringHeapTest = do
+  quickCheck (prop_heap :: ParingHeap Int -> Bool)
+  quickCheck (prop_heap :: ParingHeap String -> Bool)
