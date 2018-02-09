@@ -49,12 +49,6 @@ someBQ = do
   sample $ (arbitrary :: Gen (BatchedQueue String))
 
 
--- Deque class
--- exercise 5.1 implementation of double deque
-class Queue q => Deque q where
-  cons :: a -> q a -> q a
-  lastq :: q a -> a
-  initq :: q a -> q a
 
 data DoubleEndQueue a = DQ [a] [a] deriving Show
 
