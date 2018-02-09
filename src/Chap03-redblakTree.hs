@@ -3,11 +3,7 @@ module Chap03RedblackTree where
 import Test.QuickCheck
 import Control.Monad
 
--- Set interface
-class Set s where
-  empty :: s a
-  insert :: Ord a => a -> s a -> s a
-  member :: Ord a => a -> s a -> Bool
+import Set
 
 data Color = R | B deriving (Show, Eq)
 -- all empty node are considered black, thus no color is needed for E constructor

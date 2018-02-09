@@ -3,13 +3,8 @@ module Chap05Queue where
 import Test.QuickCheck
 import Test.QuickCheck.Arbitrary
 
--- Queue interface
-class Queue q where
-  empty :: q a
-  isEmpty :: q a -> Bool
-  snoc :: q a -> a -> q a
-  headq :: q a -> a
-  tailq :: q a -> q a
+import Queue
+
 
 -- Queue implementation with two lists
 data BatchedQueue a = BQ { front :: [a]

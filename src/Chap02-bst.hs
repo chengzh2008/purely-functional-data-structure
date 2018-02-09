@@ -3,12 +3,7 @@ module Chap02BSTSet where
 import Test.QuickCheck
 import Test.QuickCheck.Arbitrary
 
-
--- Set interface
-class Set s where
-  empty :: s a
-  insert :: (Ord a) => a -> s a -> s a
-  member :: (Ord a) => a -> s a -> Bool
+import Set
 
 --Binary Search Tree
 data BSTSet a = E | T (BSTSet a) a (BSTSet a) deriving (Show)

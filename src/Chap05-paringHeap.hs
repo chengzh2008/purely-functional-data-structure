@@ -2,6 +2,8 @@ module ParingHeap where
 
 import Test.QuickCheck
 
+import Heap
+
 -- heap-ordered multiway trees
 data ParingHeap a = E | PH a [ParingHeap a] deriving Show
 
@@ -31,14 +33,6 @@ deleteMin' :: Ord a => ParingHeap a -> ParingHeap a
 deleteMin' E = error "empty heap"
 deleteMin' (PH a as) = mergePairs as
 
-
-class Heap t where
-  empty :: t a
-  isEmpty :: t a -> Bool
-  insert :: Ord a => a -> t a -> t a
-  merge :: Ord a => t a -> t a -> t a
-  findMin :: t a -> a
-  deleteMin :: Ord a => t a -> t a
 
 instance Heap ParingHeap where
   empty = E

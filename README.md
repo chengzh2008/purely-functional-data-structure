@@ -2,6 +2,12 @@
 # Purely Functional Data Structure (Chris Okasaki)
   
  ### Learning notes and exercise solutions.
+ 
+ #### Type Classes
+ * [Set](/src/Set.hs)
+ * [Stack](/src/Stack.hs)
+ * [Queue](/src/Queue.hs)
+ * [Heap](/src/Heap.hs)
 
  #### Chap 02 Persistence 
  * [stack](/src/Chap02-stack.hs)

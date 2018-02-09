@@ -2,6 +2,7 @@ module SplayHeap where
 
 import Test.QuickCheck
 
+import Heap
 
 
 -- splay tree maintains no explicit balance information. Every operation blindly restructures the tree using some simple transformations that tend to increase balance. worst case operation can take as much as O(n), while every operation runs in O(logn) amortized time
@@ -93,14 +94,6 @@ partition a t@(T l x r) =
           let (small, big) = partition a l'
           in (small, T big y (T r' x r))
 
-
-class Heap t where
-  empty :: t a
-  isEmpty :: t a -> Bool
-  insert :: Ord a => a -> t a -> t a
-  merge :: Ord a => t a -> t a -> t a
-  findMin :: t a -> a
-  deleteMin :: t a -> t a
 
 instance Heap Tree where
   empty = E

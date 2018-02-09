@@ -3,16 +3,7 @@ module Chap02Stack where
 import Test.QuickCheck
 import Test.QuickCheck.Arbitrary
 
--- Stack interface
-
-class Stack st where
-  none :: st a
-  isEmpty :: st a -> Bool
-  peek :: st a -> a
-  pop :: st a -> (a, st a)
-  push :: a -> st a -> st a
-  len :: st a -> Int
-
+import Stack
 
 -- Stack implement with the built-in list
 newtype List a = L [a] deriving Show

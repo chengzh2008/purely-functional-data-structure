@@ -4,15 +4,8 @@ module Chap03LeftistHeap where
 import Test.QuickCheck
 import Control.Monad
 
+import Heap
 
--- Heap interface
-class Heap h where
-  empty :: h a
-  isEmpty :: h a -> Bool
-  insert :: Ord a => a -> h a -> h a
-  merge :: Ord a => h a -> h a -> h a
-  findMin :: h a -> a
-  deleteMin :: Ord a => h a -> h a
 
 type Rank = Integer
 data LHeap a = E | T Rank a (LHeap a) (LHeap a) deriving (Show, Eq, Ord)
