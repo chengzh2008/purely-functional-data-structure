@@ -6,7 +6,7 @@
  #### Type Classes
  * [Set](/src/Set.hs)
  * [Stack](/src/Stack.hs)
- * [Queue](/src/Queue.hs)
+ * [Queue/Deque](/src/Queue.hs)
  * [Heap](/src/Heap.hs)
 
  #### Chap 02 Persistence 

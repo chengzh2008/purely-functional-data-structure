@@ -4,6 +4,7 @@ import Test.QuickCheck
 import Test.QuickCheck.Arbitrary
 
 import Queue
+import Control.Monad
 
 
 -- Queue implementation with two lists
@@ -102,3 +103,4 @@ instance Deque DoubleEndQueue where
 queueTest :: IO ()
 queueTest = do
   quickCheck (prop_head_tail :: BatchedQueue Int -> Bool)
+
