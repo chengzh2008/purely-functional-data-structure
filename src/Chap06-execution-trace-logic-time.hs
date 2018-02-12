@@ -14,7 +14,7 @@
                                            |          |
                                            V          V
                                  ++++++++++++++++  ++++++++++++++++++
-                    (future 2)   +  c = tail b  +  +  c = snoc b 2  +   (future 2)
+                    (future 2)   +  c = tail b  +  +  c = snoc b 2  +   (future 2)shared cost
                                  ++++++++++++++++  ++++++++++++++++++
                                    /          \      /           \
                                   /            \    /             \
@@ -65,4 +65,29 @@
 
    the amortized cost of an operation is the unshared cost of the operation plus the amount of accumulaed debt paid off by the operation.
 
+-}
+
+
+{-
+6.3 the banker' method
+
+monolithic: once begin, it runs to completion
+incremental: decomposable into fragments that maybe executed independently
+
+
+The amortized cost of an operation is the unshared cost of the operation plus the number of debits discharged by the operation.
+
+6.3.1 Justifying the banker's method:
+
+The total amortized cost = the total unshared cost + the total number of debits discharged (paid of)
+The total actual cost    = the total unshared cost + the realized shared cost
+
+
+the banker's method <========> a graph labelling problem
+
+the problem is to label every execution trace node with three (multi) sets, s(v), a(v) and r(v), that meeting following condition:
+
+    (1) v /= v' ==> s(v) /\ s(v') = 0      (no debit may be allocted more than once)
+    (2) a(v)  <= U s(w)                    (no debit may be discharged before it is created)
+    (3) r(v) <= U a(w)                     (no debit may be realized before it is discharged)
 -}
