@@ -42,6 +42,8 @@ reasoning:
 
 -}
 
+-- TODO:  exercise 6.2 Suppose the invariant form |f| >= |r| is changed to 2|f| >= |r|. prove that the amortized bounds still hold O(1)
+
 
 instance Arbitrary a => Arbitrary (BankerQueue a) where
   arbitrary = do

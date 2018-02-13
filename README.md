@@ -10,17 +10,23 @@
  * [Heap](/src/Heap.hs)
 
  #### Chap 02 Persistence 
- * [stack](/src/Chap02-stack.hs)
- * [list](/src/Chap02-list.hs)
- * [binary search tree](/src/Chap02-bst.hs)
+ * [stack](/src/Chap02Stack.hs)
+ * [list](/src/Chap02List.hs)
+ * [binary search tree](/src/Chap02Bst.hs)
  
  #### Chap 03 Some Familiar Data Structures in a Functional Setting
- * [leftist heap](/src/Chap03-leftistHeap.hs)
- * [binomial heap](/src/Chap03-binomialHeap.hs)
- * [red black tree](/src/Chap03-redblakTree.hs)
+ * [leftist heap](/src/Chap03LeftistHeap.hs)
+ * [binomial heap](/src/Chap03BinomialHeap.hs)
+ * [red black tree](/src/Chap03RedblackTree.hs)
 
  #### Chap 05 Fundamentals of Amortization 
- * [batched queue/deque](/src/Chap05-queue.hs)
- * [splay heap](/src/Chap05-splayHeap.hs)
- * [paring heap](/src/Chap05-paringHeap.hs)
+ * [batched queue/deque](/src/Chap05Queue.hs)
+ * [splay heap](/src/Chap05SplayHeap.hs)
+ * [paring heap](/src/Chap05ParingHeap.hs)
+ 
+ #### Chap 06 Amortization and Persistence via Lazy Evaluation
+ * [execution traces and logical time](src/Chap06-execution-trace-logic-time.hs)
+ * [banker queue](src/Chap06BankerQueue.hs)
+ * [sized binomial heap](src/Chap06SizedLazyBinomialHeap.hs)
+ 
  
