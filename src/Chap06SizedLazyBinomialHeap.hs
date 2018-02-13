@@ -1,9 +1,13 @@
+{-# LANGUAGE BangPatterns #-}
 module SizedLazyBinomialHeap where
 
 import Heap
 import qualified Chap03BinomialHeap as BH
 
-data SizedBHeap a = SBHeap (BH.BHeap a)
+
+-- exercise 6.5
+type Size = Int
+data SizedBHeap a = SBHeap Size (BH.BHeap a)
 
 instance Heap SizedBHeap where
   empty = SBHeap 0 empty
