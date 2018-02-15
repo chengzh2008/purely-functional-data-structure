@@ -31,5 +31,6 @@
  * [physicist queue](src/Chap06PhysicistsQueue.hs)
  * [sized binomial heap](src/Chap06SizedLazyBinomialHeap.hs)
  * [bottom-up merge sort](src/Chap06BottomUpMergeSort.hs)
+ * [lazy paring heap](src/Chap06LazyParingHeap.hs)
  
  
