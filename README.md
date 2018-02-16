@@ -26,11 +26,15 @@
  * [paring heap](src/Chap05ParingHeap.hs)
  
  #### Chap 06 Amortization and Persistence via Lazy Evaluation
+ * [some notes](src/Chap06-execution-trace-logic-time.hs)
  * [execution traces and logical time](src/Chap06-execution-trace-logic-time.hs)
  * [banker queue](src/Chap06BankerQueue.hs)
  * [physicist queue](src/Chap06PhysicistsQueue.hs)
  * [sized binomial heap](src/Chap06SizedLazyBinomialHeap.hs)
  * [bottom-up merge sort](src/Chap06BottomUpMergeSort.hs)
  * [lazy paring heap](src/Chap06LazyParingHeap.hs)
+ 
+ #### Chap 07 Eliminating Amortization
+ * [some notes](src/Chap07-scheduling.hs)
  
  
