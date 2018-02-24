@@ -1,6 +1,8 @@
 {-# LANGUAGE BangPatterns #-}
 module Chap07RealTimeQueue where
 
+import Test.QuickCheck
+
 import Queue
 
 data RealTimeQueue a = RTQ { front :: [a]
@@ -16,7 +18,7 @@ rotate (x:xs) (y:ys) accu = x:(rotate xs ys $ y:accu)
 exec :: RealTimeQueue a -> RealTimeQueue a
 exec (RTQ front rear accu) = case accu of
   x:s -> RTQ front rear s
-  [] -> let !front' = rotate front rear [] in RTQ front' [] front'
+  [] -> let front' = rotate front rear [] in RTQ front' [] front'
 
 instance Queue RealTimeQueue where
   empty = RTQ [] [] []
@@ -32,3 +34,6 @@ instance Queue RealTimeQueue where
   tailq rtq@(RTQ front rear accu) = case isEmpty rtq of
     True -> error "empty queue"
     _ -> exec $ RTQ (tail front) rear accu
+
+
+
